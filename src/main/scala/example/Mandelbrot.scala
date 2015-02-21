@@ -26,11 +26,13 @@ object Mandelbrot {
     val inner = Breaks
 
 
-    def run: Unit = {
-      nx = x * 3d / context.canvas.width
-      ny = y * 2.5 / context.canvas.height
+    def run(): Unit = {
+      ny = y * 2.5 / context.canvas.height - 1.25
+      nx = (x - 2d / 3d * context.canvas.width) * 2.5 / context.canvas.height
+      zx = nx
+      zy = ny
 
-      inner.breakable(
+      inner.breakable {
         for (i <- 0 until 256) {
           c = zx*zx + zy*zy
 
@@ -45,7 +47,7 @@ object Mandelbrot {
               if (y == context.canvas.height)
                 inner.break()
             }
-            dom.setInterval(() => run, 10)
+            dom.setInterval(() => run(), 10)
             inner.break()
           }
 
@@ -58,9 +60,9 @@ object Mandelbrot {
           zx += nx
           zy += ny
         }
-      )
+      }
     }
 
-    dom.setInterval(() => run, 0)
+    dom.setInterval(() => run(), 0)
   }
 }
