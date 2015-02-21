@@ -27,8 +27,8 @@ object Mandelbrot {
 
 
     def run: Unit = {
-      nx = x * 3d / context.canvas.width - 2
-      ny = y * 2.5 / context.canvas.height - 1.25
+      nx = x * 3d / context.canvas.width
+      ny = y * 2.5 / context.canvas.height
 
       inner.breakable(
         for (i <- 0 until 256) {
